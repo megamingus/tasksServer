@@ -1,0 +1,16 @@
+.idea/
+target/
+.idea_modules/
+.history
+out
+.DS_Stor
+logs
+tmp/
+.history
+dist/
+*.iml
+*.iws
+*.ipr
+*.project
+*.classpath
+.settings/
