@@ -2,6 +2,7 @@ package daoo.server.tasks;
 
 import java.io.IOException;
 import java.net.Socket;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,7 +15,7 @@ public class SleepyTask extends EchoTask
 {
     private final long sleep;
 
-    private SleepyTask(Socket socket, long sleep) {
+    private SleepyTask(@NotNull Socket socket,@NotNull long sleep) {
         super(socket);
         this.sleep = sleep;
     }

@@ -1,6 +1,24 @@
 package daoo.encoder;
 
 
+import daoo.ioc.MessageEncoder;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.JUnitCore;
+import org.junit.runner.Result;
+import org.junit.runner.RunWith;
+import org.junit.runner.notification.Failure;
+import org.junit.runners.Parameterized;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import daoo.ioc.MessageEncoderTest;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: keevstessens
@@ -9,26 +27,19 @@ package daoo.encoder;
  * To change this template use File | Settings | File Templates.
  */
 
-public class InverseEncoderTest extends EncoderTest<InvertEncoder> {
+public class InverseEncoderTest extends MessageEncoderTest {
 
-    private static final InvertEncoder encoder = new InvertEncoder();
-
-    public void testEncode(){
-        String s2 = new String(encoder.encode("Mingus RoxZ"));
-        assertEquals(s2, ("ZxoR sugniM"));
-    }
-
-    public void testDecode() {
-        String s2 = encoder.decode("OtaG".getBytes());
-        assertEquals(s2, ("GatO"));
+    public InverseEncoderTest(@NotNull java.lang.String message, @NotNull byte[] encodedMessage) {
+        super(new InvertEncoder(), message, encodedMessage);
     }
 
 
-   public void testEncodeDecode() {
-        String s = "OtaG";
-        String s2 = encoder.decode(s.getBytes());
-        assertTrue(s2.equals("OtaG"));
+    @Parameterized.Parameters
+    public static Collection messages() {
+        return Arrays.asList(new Object[][]{
+                {"mensaje", "ejasnem".getBytes()},
+                {"84848", "84848".getBytes()},
+                {"toTo3", "3oTot".getBytes()},
+        });
     }
-
-
 }

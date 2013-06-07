@@ -1,6 +1,7 @@
 package daoo.server.tasks;
 
 import daoo.server.Task;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.*;
 import java.net.Socket;
@@ -14,7 +15,7 @@ import java.net.Socket;
  */
 public class EchoTask extends Task
 {
-    public EchoTask(Socket socket) { super(socket); }
+    public EchoTask(@NotNull Socket socket) { super(socket); }
 
     @Override protected void task() throws IOException {
         print("echoing...");

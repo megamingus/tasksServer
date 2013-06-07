@@ -10,10 +10,11 @@ package daoo.server.tasks;
 
 import java.io.IOException;
 import java.net.Socket;
+import org.jetbrains.annotations.NotNull;
 
 public class InfiniteTask extends EchoTask
 {
-    private InfiniteTask(Socket socket) { super(socket); }
+    private InfiniteTask(@NotNull Socket socket) { super(socket); }
 
     @Override public void task() throws IOException {
         super.task();

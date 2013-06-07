@@ -3,12 +3,13 @@ package daoo.server;
 import java.io.*;
 import java.net.Socket;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
 public abstract class Task implements Runnable {
 
     protected final Socket socket;
 
-    public Task(Socket socket) { this.socket = socket; }
+    public Task(@NotNull Socket socket) { this.socket = socket; }
 
     @Override public void run() {
         try {

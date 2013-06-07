@@ -6,6 +6,7 @@ import daoo.server.Task;
 import java.io.*;
 import java.net.Socket;
 import java.net.URI;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created with IntelliJ IDEA.
@@ -14,9 +15,11 @@ import java.net.URI;
  * Time: 20:25
  * To change this template use File | Settings | File Templates.
  */
+
+
 public class EncodeTask extends Task{
 
-    public EncodeTask(Socket socket) {
+    public EncodeTask(@NotNull Socket socket) {
         super(socket);
     }
 

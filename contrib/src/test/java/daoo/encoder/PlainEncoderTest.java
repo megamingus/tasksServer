@@ -1,5 +1,12 @@
 package daoo.encoder;
 
+import daoo.ioc.MessageEncoderTest;
+import org.jetbrains.annotations.NotNull;
+import org.junit.runners.Parameterized;
+
+import java.util.Arrays;
+import java.util.Collection;
+
 /**
  * Created with IntelliJ IDEA.
  * User: laura
@@ -7,25 +14,18 @@ package daoo.encoder;
  * Time: 11:38
  * To change this template use File | Settings | File Templates.
  */
-public class PlainEncoderTest extends EncoderTest<PlainEncoder>{
+public class PlainEncoderTest extends MessageEncoderTest{
+        public PlainEncoderTest(@NotNull java.lang.String message, @NotNull byte[] encodedMessage) {
+            super(new PlainEncoder(), message, encodedMessage);
+        }
 
-    private static final PlainEncoder encoder = new PlainEncoder();
 
-    @Override
-    public void testEncode() {
-        String encodedMessage = new String(encoder.encode("HoLa"));
-        assertEquals(encodedMessage, "HoLa");
-    }
-
-    @Override
-    public void testDecode() {
-        String decodedMessage = encoder.decode("HoLa".getBytes());
-        assertEquals(decodedMessage, "HoLa");
-    }
-
-    @Override
-    public void testEncodeDecode() {
-        String encodeDecodeMessage = encoder.decode(encoder.encode("HoLa"));
-        assertEquals(encodeDecodeMessage, "HoLa");
-    }
+        @Parameterized.Parameters
+        public static Collection messages() {
+            return Arrays.asList(new Object[][]{
+                    {"mensaje", "mensaje".getBytes()},
+                    {"84848", "84848".getBytes()},
+                    {"toTo3", "toTo3".getBytes()},
+            });
+        }
 }
