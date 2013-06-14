@@ -48,12 +48,16 @@ public class EncodeTask extends Task{
         out.write("\r\n");
         final String path = getHeaderPath(header.toString());
         final String action=path.split("/")[1];
-        final String message=path.substring(action.length() + 2);
-        if(action.toLowerCase().equals("encode")){
-            out.write(new String(MessageEncoderProvider.getFirstEncoder().encode(message)));
-        }
-        if(action.toLowerCase().equals("decode")){
-            out.write(MessageEncoderProvider.getFirstEncoder().decode(message.getBytes()));
+        try{
+            final String message=path.substring(action.length() + 2);
+            if(action.toLowerCase().equals("encode")){
+                out.write(new String(MessageEncoderProvider.getFirstEncoder().encode(message)));
+            }
+            if(action.toLowerCase().equals("decode")){
+                out.write(MessageEncoderProvider.getFirstEncoder().decode(message.getBytes()));
+            }
+        }catch (Exception e){
+           out.write(action +" is not recognized, please use /encode/ or /decode/ ");
         }
         out.write("\r\n");
 
