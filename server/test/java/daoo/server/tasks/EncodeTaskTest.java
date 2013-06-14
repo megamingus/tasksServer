@@ -1,6 +1,7 @@
 package daoo.server.tasks;
 
 import com.sun.xml.internal.bind.AnyTypeAdapter;
+import daoo.ioc.MessageEncoder;
 import daoo.ioc.MessageEncoderProvider;
 import daoo.server.Task;
 import org.junit.Test;
@@ -34,8 +35,12 @@ public class EncodeTaskTest {
     @Test
     public void testTask() throws Exception {
         MessageEncoderProvider mockmep=mock(MessageEncoderProvider.class);
-        when(MessageEncoderProvider.getFirstEncoder().encode("hola")).thenReturn("okey".getBytes());
-        when(MessageEncoderProvider.getFirstEncoder().decode("okey".getBytes())).thenReturn("hola");
+        MessageEncoder messageEncoder =mock(MessageEncoder.class);
+        when(MessageEncoderProvider.getFirstEncoder()).thenReturn(messageEncoder);
+        when(mockmep.getFirstEncoder()).thenReturn(messageEncoder);
+        when(messageEncoder.encode("hola")).thenReturn("okey".getBytes());
+        when(messageEncoder.decode("okey".getBytes())).thenReturn("hola");
+        //when(MessageEncoderProvider.getFirstEncoder().decode("okey".getBytes())).thenReturn("hola");
         new Thread(task).start();
 
 
